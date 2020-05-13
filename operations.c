@@ -24,7 +24,7 @@ int findOption(stack_t **stack, unsigned int line_number)
 		}
 	}
 
-	fprintf(stderr, "L<%d>: unknown instruction %s\n", line_number,
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number,
 		globalVariable.operation);
 	freeAll(stack);
 	exit(EXIT_FAILURE);
