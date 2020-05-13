@@ -12,18 +12,16 @@ int findOption(stack_t **stack, unsigned int line_number)
 
 	for (i = 0; ops[i].opcode != NULL; i++)
 	{
-		if (ops[i].opcode == globalVariable.operation)
+		if (strcmp(ops[i].opcode,globalVariable.operation) == 0)
 		{
 			ops[i].f(stack, line_number);
 			return 0;
 		}
 	}
-	if (!ops[i].opcode)
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, globalVariable.operation);
-		freeAll(stack);
-		exit(EXIT_FAILURE);
-	}
+	
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, globalVariable.operation);
+	freeAll(stack);
+	exit(EXIT_FAILURE);
 	return (1);
 }
 
