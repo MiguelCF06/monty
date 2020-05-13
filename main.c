@@ -1,5 +1,7 @@
 #include "monty.h"
+
 global_t globalVariable = {NULL, NULL, NULL, NULL, NULL, 0};
+
 /**
  *main - Open the monty file that is passed.
  *@argc:The count of arguments
@@ -14,8 +16,11 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "USAGE: monty file\n");
                 exit(EXIT_FAILURE);
         }
+
 	globalVariable.namefile = argv[1];
+
 	readFile(argv[1]);
+
 	parsingFile();
 
         return (EXIT_SUCCESS);
@@ -24,10 +29,10 @@ int main(int argc, char *argv[])
 void readFile(char *namefile)
 {
 	globalVariable.montyfile = fopen(namefile, "r");
+	
 	if (!globalVariable.montyfile)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", globalVariable.namefile);
-		fclose(globalVariable.montyfile);
 		exit(EXIT_FAILURE);
 	}
 	
@@ -35,13 +40,26 @@ void readFile(char *namefile)
 
 void parsingFile(void)
 {
-	size_t size;
-	
-	while (getline(&globalVariable.buffer, &size, globalVariable.montyfile))
+	size_t size = 0;
+	ssize_t read = 0;
+	int unsigned line_number = 1;
+	stack_t *stack = NULL;
+
+	while (1)
 	{
-	        globalVariable.operation = strtok(globalVariable.buffer, " \n");
-		if (globalVariable.operation[0] == '#')
+	        read = getline(&globalVariable.buffer, &size, globalVariable.montyfile);
+		if (read == -1)
+			break;
+
+		globalVariable.operation = strtok(globalVariable.buffer, " \n");
+
+		if (!globalVariable.operation || globalVariable.operation[0] == '#')
 			globalVariable.operation = "nop";
+		globalVariable.arguments = strtok(NULL, " \n");
+
+		findOption(&stack, line_number);
+		line_number++;
 	}
-	globalVariable.arguments = strtok(NULL, " \n");
+
+	freeAll(&stack);
 }
