@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
 	globalVariable.namefile = argv[1];
 	readFile(argv[1]);
 	parsingFile();
+
         return (EXIT_SUCCESS);
 }
 
@@ -26,6 +27,7 @@ void readFile(char *namefile)
 	if (!globalVariable.montyfile)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", globalVariable.namefile);
+		fclose(globalVariable.montyfile);
 		exit(EXIT_FAILURE);
 	}
 	
@@ -34,14 +36,12 @@ void readFile(char *namefile)
 void parsingFile(void)
 {
 	size_t size;
-	ssize_t sizeline;
-
-	while (1)
+	
+	while (getline(&globalVariable.buffer, &size, globalVariable.montyfile))
 	{
-		sizeline = getline(&globalVariable.buffer, &size, globalVariable.montyfile);
-		if (sizeline == -1)
-			break;
-
-		tokenize(sizeline);
+	        globalVariable.operation = strtok(globalVariable.buffer, " \n");
+		if (globalVariable.operation[0] == '#')
+			globalVariable.operation = "nop";
 	}
+	globalVariable.arguments = strtok(NULL, " \n");
 }
