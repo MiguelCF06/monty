@@ -4,14 +4,21 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
 
-	if (!globalVariable.arguments || !atoi(globalVariable.arguments))
+	if (!globalVariable.arguments)
+	{
+		fprintf(stderr, "L%d: usage: push integer", line_number);
+                exit(EXIT_FAILURE);
+	}
+
+	if (*globalVariable.arguments != '0' && !atoi(globalVariable.arguments))
 	{
 		fprintf(stderr, "L%d: usage: push integer", line_number);
 		exit(EXIT_FAILURE);
 	}
+
 	new_node = malloc(sizeof(stack_t));
 
-	if (new_node == NULL)
+	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed");
 		free(new_node);
@@ -19,14 +26,15 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = atoi(globalVariable.arguments);
-	new_node->next = NULL;
-	new_node->prev = *stack;
-
-	if (*stack == NULL)
+	if (new_node)
 	{
+		new_node->n = atoi(globalVariable.arguments);
+		new_node->next = *stack;
 		new_node->prev = NULL;
-		*stack = new_node;
+		
+		if (*stack)
+			(*stack)->prev = new_node;
+		(*stack) = new_node;
 	}
 }
 
@@ -40,4 +48,10 @@ void pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", (*stack)->n);
 		stack = &(*stack)->next;
 	}
+}
+
+void nop(stack_t **stack, unsigned int line_number)
+{
+	(void)**stack;
+	(void)line_number;
 }
