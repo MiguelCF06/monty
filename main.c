@@ -44,15 +44,15 @@ void readFile(char *namefile)
 void parsingFile(void)
 {
 	size_t size = 0;
-	ssize_t read = 0;
+	ssize_t reading = 0;
 	unsigned int line_number = 1;
 	stack_t *stack = NULL;
 
 	while (1)
 	{
-		read = getline(&globalVariable.buffer, &size,
+		reading = getline(&globalVariable.buffer, &size,
 			       globalVariable.montyfile);
-		if (read == -1)
+		if (reading == -1)
 			break;
 
 		globalVariable.operation = strtok(globalVariable.buffer, " \t\n");
