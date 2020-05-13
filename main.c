@@ -11,32 +11,35 @@ global_t globalVariable = {NULL, NULL, NULL, NULL, NULL, 0};
 int main(int argc, char *argv[])
 {
 
-        if (argc != 2)
-        {
-                fprintf(stderr, "USAGE: monty file\n");
-                exit(EXIT_FAILURE);
-        }
-
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 	globalVariable.namefile = argv[1];
-
 	readFile(argv[1]);
-
 	parsingFile();
-
-        return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
 
+/**
+ *readFile - Open and read the monty file
+ *@namefile: The name of the monty bytecode file
+ */
 void readFile(char *namefile)
 {
 	globalVariable.montyfile = fopen(namefile, "r");
-	
+
 	if (!globalVariable.montyfile)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", globalVariable.namefile);
 		exit(EXIT_FAILURE);
 	}
-	
 }
+/**
+ *parsingFile - Parse the text in the file
+ *It doesn't need arguments
+ */
 
 void parsingFile(void)
 {
@@ -47,7 +50,8 @@ void parsingFile(void)
 
 	while (1)
 	{
-	        read = getline(&globalVariable.buffer, &size, globalVariable.montyfile);
+		read = getline(&globalVariable.buffer, &size,
+			       globalVariable.montyfile);
 		if (read == -1)
 			break;
 
