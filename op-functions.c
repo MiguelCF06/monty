@@ -11,13 +11,13 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (!globalVariable.arguments)
 	{
-		fprintf(stderr, "L%d: usage: push integer", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
 	if (*globalVariable.arguments != '0' && !atoi(globalVariable.arguments))
 	{
-		fprintf(stderr, "L%d: usage: push integer", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
@@ -25,7 +25,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (!new_node)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(stderr, "Error: malloc failed\n");
 		free(new_node);
 		freeAll(stack);
 		exit(EXIT_FAILURE);
