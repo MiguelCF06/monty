@@ -45,7 +45,7 @@ void parsingFile(void)
 {
 	size_t size = 0;
 	ssize_t read = 0;
-	int unsigned line_number = 1;
+	unsigned int line_number = 1;
 	stack_t *stack = NULL;
 
 	while (1)
