@@ -55,11 +55,11 @@ void parsingFile(void)
 		if (read == -1)
 			break;
 
-		globalVariable.operation = strtok(globalVariable.buffer, " \n");
+		globalVariable.operation = strtok(globalVariable.buffer, " \t\n");
 
 		if (!globalVariable.operation || globalVariable.operation[0] == '#')
 			globalVariable.operation = "nop";
-		globalVariable.arguments = strtok(NULL, " \n");
+		globalVariable.arguments = strtok(NULL, " \t\n");
 
 		findOption(&stack, line_number);
 		line_number++;
