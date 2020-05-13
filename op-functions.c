@@ -16,7 +16,8 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	if (*globalVariable.arguments != '0' && !atoi(globalVariable.arguments))
+	if (*globalVariable.arguments != '0' && _isdigit(globalVariable.arguments) &&
+	    globalVariable.arguments[0] != '-')
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		freeAll(stack);
@@ -71,4 +72,21 @@ void nop(stack_t **stack, unsigned int line_number)
 {
 	(void)**stack;
 	(void)line_number;
+}
+
+/**
+ *_isdigit - Verify if is digit or not
+ *@li: The char to verify
+ *Return: 1 if not is digit or 0 if is digit
+ */
+int _isdigit(char *li)
+{
+	int i;
+
+	for (i = 0; li[i]; i++)
+	{
+		if (li[i] < 48 || li[i] > 57)
+			return (1);
+	}
+	return (0);
 }
