@@ -12,12 +12,14 @@ void push(stack_t **stack, unsigned int line_number)
 	if (!globalVariable.arguments)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		freeAll(stack);
 		exit(EXIT_FAILURE);
 	}
 
 	if (*globalVariable.arguments != '0' && !atoi(globalVariable.arguments))
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		freeAll(stack);
 		exit(EXIT_FAILURE);
 	}
 
