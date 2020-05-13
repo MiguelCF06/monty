@@ -2,6 +2,7 @@
 #define _MONTY_H_
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -45,5 +46,18 @@ typedef struct global_s
 } global_t;
 extern global_t globalVariable;
 
+
+/*operations*/
+int findOption(stack_t **stack, unsigned int line_number);
+void freeAll(stack_t **stack);
+
+
+/*op-functions*/
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+
+/*main*/
+void readFile(char *namefile);
+void parsingFile(void);
 
 #endif
