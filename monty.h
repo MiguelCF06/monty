@@ -89,4 +89,4 @@ void rotr(stack_t **stack, unsigned int line_number);
 void readFile(char *namefile);
 void parsingFile(void);
 
-#endif
+#endif /* _MONTY_H_ */
