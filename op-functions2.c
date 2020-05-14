@@ -1,4 +1,4 @@
-B#include "monty.h"
+#include "monty.h"
 /**
  *pint - Prints the value at the top of the stack
  *@stack: The doubly linked list
