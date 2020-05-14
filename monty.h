@@ -67,6 +67,8 @@ void pall(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 int _isdigit(char *li);
 
+/*op-functions2*/
+void pint(stack_t **stack, unsigned int line_number);
 
 /*main*/
 void readFile(char *namefile);
