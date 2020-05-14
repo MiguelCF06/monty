@@ -23,7 +23,6 @@ int findOption(stack_t **stack, unsigned int line_number)
 		{"pstr", pstr},
 		{"rotl", rotl},
 		{"rotr", rotr},
-		{"", nop},
 		{"nop", nop},
 		{NULL, NULL}
 	};
