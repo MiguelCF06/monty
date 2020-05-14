@@ -72,5 +72,5 @@ And here is for swap:
   1
   ```
 ## Authors
-[Miguel Cipamocha] (https://github.com/MiguelCF06)
-[Santiago Gallego] (https://github.com/Santiago-Gallego)
+[Miguel Cipamocha](https://github.com/MiguelCF06)
+[Santiago Gallego](https://github.com/Santiago-Gallego)
