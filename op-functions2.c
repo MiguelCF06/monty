@@ -18,8 +18,5 @@ void pint(stack_t **stack, unsigned int line_number)
  *pop - Removes the top element of the stack
  *@stack: The doubly linked list
  *@line_number: Line of the text
- */
 void pop(stack_t **stack, unsigned int line_number)
-{
-	
-}
+ */
