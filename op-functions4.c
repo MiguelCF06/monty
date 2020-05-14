@@ -12,7 +12,7 @@ void rotl(stack_t **stack, unsigned int line_number)
 	if (!stack || !*stack || !(*stack)->next)
 		return;
 
-	*stack->next->prev = NULL;
+	(*stack)->next->prev = NULL;
 	while (temp && temp->next)
 		temp = temp->next;
 
