@@ -80,3 +80,23 @@ void add(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
+
+/**
+ *sub - Substract the top two elements of the stack
+ *@stack: The doubly linked list
+ *@line_number: Line of the text
+ */
+void sub(stack_t **stack, unsigned int line_number)
+{
+	if (*stack && (*stack)->next)
+	{
+		(*stack)->next->n -= (*stack)->n;
+		pop(stack, line_number);
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
+		freeAll(stack);
+		exit(EXIT_FAILURE);
+	}
+}
